@@ -1,25 +1,41 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <div className="container">
+        <div className="heading-container">
+          <h2>
+            Rock <br />
+            Paper <br />
+            Scissors <br />
+          </h2>
+          <div className="score-container">
+            <p>score</p>
+            <div id="score">1</div>
+          </div>
+        </div>
+        <div className="game-container">
+            <div id="rock" className="selectable rock">✊</div>
+            <div id="paper" className="selectable paper">✋</div>
+            <div id="scissors" className="selectable scissors">✌</div>
+        </div>
+        <div className="winner-container hide">
+            <div className="selected">
+                <div className="user-results"></div>
+                <p>You Picked</p>
+            </div>
+            <div className="selected">
+                <div className="ai-results"></div>
+                <p>AI Picked</p>
+            </div>
+        </div>
+        <div className="outcome">
+            <h2 id="won-text"></h2>
+            <button id="reset">Play again</button>
+        </div>
+      </div>
     </div>
   );
-}
-
+};
 export default App;
