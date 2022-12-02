@@ -44,9 +44,11 @@ const App = () => {
   function updateUI(userIcon, aiIcon, outcome_text, user, ai) {
     document.querySelector(".user-results").innerHTML = userIcon;
     document.querySelector(".user-results").classList.add(`${user.selected}`);
+    document.querySelector(".user-results").classList.add(`selectable`);
 
     document.querySelector(".ai-results").innerHTML = aiIcon;
     document.querySelector(".ai-results").classList.add(`${ai.selected}`);
+    document.querySelector(".ai-results").classList.add(`selectable`);
 
     document.querySelector("#won-text").innerHTML = outcome_text;
     document.querySelector(".game-container").classList.add("hide");
