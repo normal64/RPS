@@ -141,6 +141,7 @@ const App = () => {
           </button>
         </div>
       </div>
+      <h3 className="made-by">By Denis Poplavskii</h3>
     </div>
   );
 };
