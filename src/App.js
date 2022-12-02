@@ -1,7 +1,24 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./styles/App.scss";
 const App = () => {
   const [PLAYER_SCORE, setPLAYER_SCORE] = useState(0);
+  useEffect(() => {
+    let savedScore = localStorage.getItem("PLAYER_SCORE", PLAYER_SCORE);
+    console.log(` savedScore`, savedScore);
+    if (savedScore) {
+      setPLAYER_SCORE(savedScore);
+    }
+    return () => {};
+  }, []);
+  useEffect(() => {
+    console.log(`PLAYER_SCORE`, PLAYER_SCORE);
+    if (PLAYER_SCORE) {
+      localStorage.setItem("PLAYER_SCORE", PLAYER_SCORE);
+    }
+
+    return () => {};
+  }, [PLAYER_SCORE]);
+
   const WINNER_COMBO = [
     {
       selected: "rock",
@@ -20,8 +37,6 @@ const App = () => {
     },
   ];
   function handlePlayersChoice(e, choiceNumber) {
-    console.log(e.target.id);
-    console.log(choiceNumber);
     calculateWinner(WINNER_COMBO[choiceNumber], ai_selected());
   }
   function ai_selected() {
@@ -30,8 +45,10 @@ const App = () => {
   }
   function calculateWinner(user, ai) {
     if (user.beats == ai.selected) {
-      setPLAYER_SCORE(PLAYER_SCORE + 1);
-      console.log(`user.icon`, user.icon);
+      let newScore = PLAYER_SCORE;
+      newScore++;
+      setPLAYER_SCORE(newScore);
+
       updateUI(user.icon, ai.icon, "You won", user, ai);
       return;
     }
