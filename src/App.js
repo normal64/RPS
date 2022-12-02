@@ -71,15 +71,25 @@ const App = () => {
     document.querySelector(".game-container").classList.add("hide");
     document.querySelector(".outcome").classList.remove("hide");
     document.querySelector(".winner-container").classList.remove("hide");
+    if(outcome_text == 'You won'){
+      document.querySelector(".container-text").classList.remove("hide");
+    }
+    
   }
   function resetGame() {
     document.querySelector(".game-container").classList.remove("hide");
     document.querySelector(".winner-container").classList.add("hide");
     document.querySelector(".outcome").classList.add("hide");
+    document.querySelector(".container-text").classList.add("hide");
   }
   return (
     <div>
       <div className="container">
+<div class="container-text hide">
+  <h1 class="neon">You've won.An urban legend come true.<br />  You complete the jigsaw puzzle to discover it is a picture of yourself, finishing that same puzzle</h1>
+
+</div>
+
         <div className="heading-container">
           <h2>
             Rock <br />
