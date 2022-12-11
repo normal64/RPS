@@ -2,25 +2,10 @@ import React, { useState, useEffect } from "react";
 import "./styles/App.scss";
 import {resetGame,updateUI,calculateWinner,ai_selected} from "./utils/utils"
 import {WINNER_COMBO} from "./utils/var"
+import useLocalStore from "./utils/useLocalStore"
 const App = () => {
-  const [PLAYER_SCORE, setPLAYER_SCORE] = useState(0);
-  //TODO get rid of useEffect in main component
-  useEffect(() => {
-    let savedScore = localStorage.getItem("PLAYER_SCORE", PLAYER_SCORE);
-    console.log(` savedScore`, savedScore);
-    if (savedScore) {
-      setPLAYER_SCORE(savedScore);
-    }
-    return () => {};
-  }, []);
-  useEffect(() => {
-    console.log(`PLAYER_SCORE`, PLAYER_SCORE);
-    if (PLAYER_SCORE) {
-      localStorage.setItem("PLAYER_SCORE", PLAYER_SCORE);
-    }
-
-    return () => {};
-  }, [PLAYER_SCORE]);
+  const [PLAYER_SCORE, setPLAYER_SCORE] = useLocalStore();
+  
 
   function handlePlayersChoice(e, choiceNumber) {
     calculateWinner(WINNER_COMBO[choiceNumber], ai_selected(),PLAYER_SCORE,setPLAYER_SCORE);
@@ -30,8 +15,8 @@ const App = () => {
   return (
     <div>
       <div className="container">
-        <div class="container-text hide">
-          <h1 class="neon">
+        <div className="container-text hide">
+          <h1 className="neon">
             You've won.An urban legend come true.
             <br /> You complete the jigsaw puzzle to discover it is a picture of
             yourself, finishing that same puzzle
